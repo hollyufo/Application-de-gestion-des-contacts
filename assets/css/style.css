@@ -15,9 +15,30 @@ a{
     color: #5a2fc5;
 }
 .login{
-    width: 60%;
+    width: 40%;
     margin: auto;
 }
 .tlogin{
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.sec{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    background-color: #ffffff;
+}
+label{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.btn-sepcial{
+    margin-top: 15px;
+    background-color: #440ddc;
+    color: #ffffff;
+}
+.s13{
+    margin-top: 20px;
 }
