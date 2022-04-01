@@ -4,12 +4,15 @@ const form = document.getElementById('loginform')
 var valid
 // checking data for all inputs if it exist
 var index = 0
+const patterns = /^[a-z0-9_-]{2,15}$/
 form.addEventListener('submit', (e) => {
   if (username.value === '' || username.value == null) {
     index++
     username.classList.add("is-invalid");
-  }else{
-    username.classList.add("is-valid");
+  }
+  if(patterns.test(username.value) == false){
+    username.classList.add("is-invalid");
+    console.log("it works")
   }
   if (password.value === '' || password.value == null) {
     index++
