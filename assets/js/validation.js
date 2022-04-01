@@ -1,10 +1,11 @@
 const username = document.getElementById('username')
 const password = document.getElementById('password')
 const form = document.getElementById('loginform')
+const usernameErrorField = document.getElementById('usernameError')
 var valid
 // checking data for all inputs if it exist
 var index = 0
-const patterns = /^[a-z0-9_-]{2,15}$/
+const patterns = /^[a-z0-9_-]{3,15}$/
 form.addEventListener('submit', (e) => {
   if (username.value === '' || username.value == null) {
     index++
@@ -12,7 +13,7 @@ form.addEventListener('submit', (e) => {
   }
   if(patterns.test(username.value) == false){
     username.classList.add("is-invalid");
-    console.log("it works")
+    usernameErrorField.innerText = "your username must be between 3 and 10 characters and alphanumeric only."
   }
   if (password.value === '' || password.value == null) {
     index++
