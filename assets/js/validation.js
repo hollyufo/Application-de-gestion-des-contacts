@@ -15,7 +15,7 @@ form.addEventListener('submit', (e) => {
     if(patterns.test(username.value) == false){
         index++
         username.classList.add("is-invalid");
-        usernameErrorField.innerText = "your username must be between 3 and 10 characters and alphanumeric only."
+        usernameErrorField.innerText = "Username is required."
     }
 
     if (password.value === '' || password.value == null) {
