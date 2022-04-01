@@ -6,7 +6,7 @@ const usernameErrorField = document.getElementById('usernameError')
 var valid
 // checking data for all inputs if it exist
 var index = 0
-const patterns = /^[a-z0-9_-]{3,15}$/
+const patterns = /^[a-z0-9]{3,15}$/
 form.addEventListener('submit', (e) => {
     if (username.value === '' || username.value == null) {
         index++
