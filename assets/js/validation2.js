@@ -10,7 +10,7 @@ var index = 0
 const patterns = /^[a-z0-9_-]{3,15}$/
 const passpattrerns = /^[a-zA-Z0-9]{6,15}$/ 
 form.addEventListener('submit', (e) => {
-if (username.value === '' || username.value == null) {
+    if (username.value === '' || username.value == null) {
         index++
         username.classList.add("is-invalid");
     }
