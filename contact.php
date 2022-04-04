@@ -1,3 +1,7 @@
+<?php
+session_start();
+include('./controllers/contacts.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,23 +50,28 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>test</td>
-                </tr>
+
+                <?php
+                    $d_contact = new contact;
+                    $datas = $d_contact->showallcontact();
+                    foreach ($datas as $data) {
+                        echo'
+                            <tr>
+                                <th scope="row">'.$data['contactid'].'</th>
+                                <td>'.$data['fullname'].'</td>
+                                <td>'.$data['phone'].'</td>
+                                <td>'.$data['email'].'</td>
+                                <td>'.$data['address'].'</td>
+                                <td>test</td>
+                            </tr>
+                        
+                            ';
+                    }
+                ?>
             </tbody>
             </table>              
           </div>
@@ -79,10 +88,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
+                            <form action="" method="POST">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Full Name">
+                                    <input type="text" name="fullname" class="form-control" id="email" placeholder="Full Name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="Phone" class="form-label">Phone</label>
@@ -90,11 +99,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email@example.com">
+                                    <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="email@example.com">
                                 </div>
                                 <div class="mb-3">
                                     <label for="Address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="Address" placeholder="Address">
+                                    <input type="text" class="form-control" name="address" id="Address" placeholder="Address">
                                 </div>
                                 <div class="mb-3">
                                     <button name='submit' value="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -107,6 +116,16 @@
                     </div>
             </div>
         </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>        
+<?php 
+        if (isset($_POST['submit'])) {
+            ob_start();
+            $d_contact->addContact($_POST['fullname'],$_POST['phone'],$_POST['email'], $_POST['address'],);
+            
+            //echo "<script>window.location.href = './contact.php';</script>";
+            ob_end_flush();
+        }
+        ?>

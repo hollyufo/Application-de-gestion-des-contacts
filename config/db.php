@@ -1,5 +1,5 @@
 <?php
-class Database{  
+class Database{
     private $host;
     private $username;  
     private $password;
@@ -14,4 +14,4 @@ class Database{
         $conn = new mysqli($this->host, $this->username, $this->password, $this->db);
         return $conn;
     }
-}
+} // LES VARIABLE O LES FUNCTION
