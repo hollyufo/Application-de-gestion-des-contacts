@@ -1,3 +1,6 @@
+<?php 
+include('./controllers/user.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,23 +24,45 @@
       <div class="">
         <div class="login">
             <h2 class="tlogin">Authenticate</h2>
-            <form id="loginform" action="">
+                        <?php 
+
+            if(isset($_POST['submit'])){
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $verifypassword = $_POST['verifypassword'];
+                if($password == $verifypassword){
+                    $user = new User();
+                    $user->username = $username;
+                    $user->password = $password;
+                    $user->create();
+                    echo '<div class="alert alert-success" role="alert">
+                            Your account has been created. <a class="btn btn-dark" href="./login.html">Login here</a>
+                            </div>
+                    ';
+                }else{
+                    echo '<div class="alert alert-success" role="alert">
+                    Password doesnot match
+                    </div>';
+                }
+            }
+            ?>
+            <form id="loginform" action="" method="POST">
                 <div class="sec">
                     <label for="username">Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">    
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">    
                     <p class="invalid-feedback" id="usernameError"></p>
                 </div>
                 <div class="sec">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">      
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">      
                     <p id="passwordError" class="invalid-feedback small"></p> 
                 </div>
                 <div class="sec">
                   <label for="verifypassword">Verify Password</label>
-                  <input type="password" id="verifypassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">      
+                  <input type="password" name="verifypassword" id="verifypassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">      
                 </div>
                 <div class="sec">
-                    <input class="btn btn-sepcial" type="submit" value="Login" name="submit" onclick="checkUsername();">
+                    <input class="btn btn-sepcial" type="submit" value="submit" name="submit" onclick="checkUsername();">
                 </div>     
             </form>
             <p class="s13">Already have ancount? <a href="./login.html">Login</a> here.</p>
@@ -59,7 +84,7 @@
                     username: $("#username").val(),
                 },
                 success: function(result){
-                    $("#usernameError").text(result);
+                    //$("#usernameError").text(result);
                 },
                 error: function(html){
                     console.log('error');
@@ -70,7 +95,5 @@
             });
         }
     </script>
-
-
   </body>
 </html>

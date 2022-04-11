@@ -122,10 +122,8 @@ include('./controllers/contacts.php');
 </html>        
 <?php 
         if (isset($_POST['submit'])) {
-            ob_start();
             $d_contact->addContact($_POST['fullname'],$_POST['phone'],$_POST['email'], $_POST['address'],);
             
             //echo "<script>window.location.href = './contact.php';</script>";
-            ob_end_flush();
         }
         ?>

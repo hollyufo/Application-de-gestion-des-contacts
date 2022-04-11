@@ -1,73 +1,65 @@
 <?php
 include('./config/db.php');
-// user class
-class user extends Database{
-
+// login user session
+class User extends Database{
+    // user properties
     public $id;
     public $username;
     public $password;
     public $created_at;
     public $last_login;
-    
 
-
-    
-
-
-    public function read(){
-        $query = "SELECT * FROM " . $this->table . " ORDER BY created_at DESC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt;
+    // sanitize user input
+    public function sanitize($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
-
+    // create user
     public function create(){
-        $query = "INSERT INTO " . $this->table . " SET name=:name, email=:email, password=:password, created_at=:created_at";
-        $stmt = $this->conn->prepare($query);
 
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->password = htmlspecialchars(strip_tags($this->password));
-        $this->created_at = htmlspecialchars(strip_tags($this->created_at));
-
-        $stmt->bindParam(":name", $this->name);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":password", $this->password);
-        $stmt->bindParam(":created_at", $this->created_at);
-
-        if($stmt->execute()){
-            return true;
-        }
-        return false;
-    }
-
-    public function update(){
-        $query = "UPDATE " . $this->table . " SET name=:name, email=:email, password=:password WHERE id=:id";
-        $stmt = $this->conn->prepare($query);
-
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->password = htmlspecialchars(strip_tags($this->password));
-        $this->id = htmlspecialchars(strip_tags($this->id));
-    }
-
-    // check if user exist
-    public static function find_user($username){
-        return 'Ok Method for '.$username;
-        /* $sql = "SELECT * FROM users WHERE username = '$username'";
+        // sanitize user input
+        $this->username = $this->sanitize($this->username);
+        $this->password = $this->sanitize($this->password);
+        // password encryption
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->created_at = date(DATE_RFC822);
+        $this->last_login = date(DATE_RFC822);
+        $sql = "INSERT INTO users VALUES(NULL, '$this->username','$this->created_at','$this->last_login', '$this->password')";
         $result = $this->connect()->query($sql);
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            return $row;
-        } */
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
+    // login user
+    public function login(){
+        $this->username = $this->sanitize($this->username);
+        $this->password = $this->sanitize($this->password);
+        $sql = "SELECT * FROM users WHERE username = '$this->username'";
+        $result = $this->connect()->query($sql);
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            if(password_verify($this->password, $row['password'])){
+                $_SESSION['username'] = $this->username;
+                $_SESSION['id'] = $row['id'];
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    
 }
 
 
-if(isset($_GET['check'])){
-    $username = $_POST['username'];
-    echo User::find_user($username);
-}
+// if(isset($_GET['check'])){
+//     $username = $_POST['username'];
+//     echo User::find_user($username);
 
 
 
