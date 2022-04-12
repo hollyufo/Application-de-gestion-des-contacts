@@ -49,6 +49,10 @@ class User extends Database{
                 $_SESSION['last_login'] = $row['last_login'];
                 $_SESSION['logged_in'] = true;
                 header('location: contact.php');
+                // updating last login
+                $this->last_login = date(DATE_RFC822);
+                $sql = "UPDATE users SET lastonline = '$this->last_login' WHERE username = '$this->username'";
+                $result = $this->connect()->query($sql);
                 return true;
             }else{
                 return false;
@@ -56,6 +60,11 @@ class User extends Database{
         }else{
             return false;
         }
+    }
+    // logout user
+    public function logout(){
+        session_destroy();
+        header('location: index.php');
     }
     
 }

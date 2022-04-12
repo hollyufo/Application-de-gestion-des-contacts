@@ -1,6 +1,6 @@
 <?php
 include('./controllers/contacts.php');
-if (!issset($_SESSION['logged_in'])) {
+if (!isset($_SESSION['logged_in'])) {
     header('location: login.php');
 }
 ?>
@@ -30,7 +30,7 @@ if (!issset($_SESSION['logged_in'])) {
                 <a class="nav-link" href="#">Contacts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">Logout</a>
+                <a href="./logout.php" class="nav-link">Logout</a>
               </li>
             </ul>
             <div class="d-flex">

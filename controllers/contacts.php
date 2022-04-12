@@ -17,7 +17,8 @@ class contact extends Database {
     }
     // fetching data from db
     protected function getalluser(){
-        $sql = "SELECT * FROM contacts";
+        $Userid = $_SESSION['id'];
+        $sql = "SELECT * FROM contacts where userid = '$Userid'";
         $result = $this->connect()->query($sql);
         $nrows = $result->num_rows;
         if ($nrows > 0){
@@ -36,12 +37,12 @@ class contact extends Database {
         return $datas;
     }
     //  inserting dat
-    public function addContact($name, $phone, $email, $address){
+    public function addContact($name, $phone, $email, $address, $userid){
         $this->name = $name;
         $this->phone = $phone;
         $this->email = $email;
         $this->address = $address;
-        $sql = "INSERT INTO contacts VALUES (NULL,'$this->name','$this->phone','$this->email','$this->address')";
+        $sql = "INSERT INTO contacts VALUES (NULL,'$this->name','$this->phone','$this->email','$this->address','$userid')";
         $result = $this->connect()->query($sql);
         if ($result === TRUE) {
             header('location: contact.php?edit=true');
