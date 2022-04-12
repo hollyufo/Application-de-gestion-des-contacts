@@ -1,6 +1,8 @@
 <?php
-session_start();
 include('./controllers/contacts.php');
+if (!issset($_SESSION['logged_in'])) {
+    header('location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
