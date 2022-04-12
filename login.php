@@ -1,3 +1,6 @@
+<?php 
+    include('./controllers/user.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +21,30 @@
       <div class="">
         <div class="login">
             <h2 class="tlogin">Authenticate</h2>
-            <form id="loginform" action="">
+            <form id="loginform" action="" method="POST">
+                <?php 
+                // log in
+                if(isset($_POST['login'])){
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $user = new User();
+                    $user->username = $username;
+                    $user->password = $password;
+                    $user->login();
+                }
+                ?>
                 <div class="sec">
                     <label for="username">Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
                     <p id="usernameError" class="invalid-feedback small"></p>    
                 </div>
                 <div class="sec">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
                     <p id="passwordError" class="invalid-feedback small"></p>       
                 </div>
                 <div class="sec">
-                    <input class="btn btn-sepcial" type="submit" value="Login" name="submit">
+                    <input class="btn btn-sepcial" type="submit" value="Login" name="login">
                 </div>     
             </form>
             <p class="s13">No account? <a href="./signup.html">Sign up</a> here.</p>

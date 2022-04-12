@@ -45,6 +45,7 @@ class User extends Database{
             if(password_verify($this->password, $row['password'])){
                 $_SESSION['username'] = $this->username;
                 $_SESSION['id'] = $row['id'];
+                header('location: contact.php');
                 return true;
             }else{
                 return false;

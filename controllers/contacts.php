@@ -27,7 +27,7 @@ class contact extends Database {
             return $data;
         }
         else{
-            echo 'no records';
+            return false;
         }
     }
     //////////////////
