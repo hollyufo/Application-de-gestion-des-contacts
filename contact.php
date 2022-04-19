@@ -58,8 +58,28 @@ if (!isset($_SESSION['logged_in'])) {
             <tbody>
 
                 <?php
+                if(isset($_GET['deleted'])){
+                    echo '<div class="alert alert-danger" role="alert">
+                    Contact deleted successfully!
+                  </div>';
+                }
+                if(isset($_GET['added'])){
+                    echo '<div class="alert alert-success" role="alert">
+                    Contact added successfully!
+                  </div>';
+                }
                     $d_contact = new contact;
                     $datas = $d_contact->show();
+                ?>
+                <?php 
+                    if (isset($_POST['submit'])) {
+                        $d_contact->fullname = $_POST['fullname'];
+                        $d_contact->phone = $_POST['phone'];
+                        $d_contact->email = $_POST['email'];
+                        $d_contact->address = $_POST['address'];
+                        $d_contact->user_id = $_SESSION['id'];
+                        $d_contact->add();
+                    }
                 ?>
             </tbody>
             </table>              
@@ -109,13 +129,3 @@ if (!isset($_SESSION['logged_in'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>        
-<?php 
-        if (isset($_POST['submit'])) {
-            $d_contact->fullname = $_POST['fullname'];
-            $d_contact->phone = $_POST['phone'];
-            $d_contact->email = $_POST['email'];
-            $d_contact->address = $_POST['address'];
-            $d_contact->user_id = $_SESSION['id'];
-            $d_contact->add();
-        }
-        ?>

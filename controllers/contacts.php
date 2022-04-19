@@ -71,9 +71,7 @@ class contact extends Database {
         // insert contact into database
         $sql = "INSERT INTO contacts VALUES (NULL, '$this->fullname', '$this->phone', '$this->email', '$this->address', '$this->user_id')";
         if($this->connect()->query($sql)){
-            echo '<div class="alert alert-success" role="alert">
-            Contact has been added. <a class="btn btn-dark" href="./contacts.php">View contacts</a>
-            </div>';
+            echo '<div class="alert alert-success" role="alert">User added successfully. </div>';
         }else{
             echo '<div class="alert alert-success" role="alert">
             Error: '.$this->connect()->error.'
@@ -84,6 +82,7 @@ class contact extends Database {
     public function delete(){
         $sql = "DELETE FROM contacts WHERE contactid = '$this->id'";
         if($this->connect()->query($sql)){
+            header('location: ./contact.php?deleted=true');
             echo '<div class="alert alert-success" role="alert">
             Contact has been deleted. <a class="btn btn-dark" href="./contacts.php">View contacts</a>
             </div>';
