@@ -43,14 +43,14 @@ class contact extends Database {
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
                 echo '<tr>
-                <td>'.$row['id'].'</td>
+                <td>'.$row['contactid'].'</td>
                 <td>'.$row['fullname'].'</td>
                 <td>'.$row['phone'].'</td>
                 <td>'.$row['email'].'</td>
                 <td>'.$row['address'].'</td>
                 <td>
-                <a href="./edit.php?id='.$row['id'].'" class="btn btn-dark">Edit</a>
-                <a href="./delete.php?id='.$row['id'].'" class="btn btn-danger">Delete</a>
+                <a href="./edit.php?id='.$row['contactid'].'" class="btn btn-dark">Edit</a>
+                <a href="./delete.php?id='.$row['contactid'].'" class="btn btn-danger">Delete</a>
                 </td>
                 </tr>';
             }
@@ -73,6 +73,19 @@ class contact extends Database {
         if($this->connect()->query($sql)){
             echo '<div class="alert alert-success" role="alert">
             Contact has been added. <a class="btn btn-dark" href="./contacts.php">View contacts</a>
+            </div>';
+        }else{
+            echo '<div class="alert alert-success" role="alert">
+            Error: '.$this->connect()->error.'
+            </div>';
+        }
+    }
+    // delete contact
+    public function delete(){
+        $sql = "DELETE FROM contacts WHERE contactid = '$this->id'";
+        if($this->connect()->query($sql)){
+            echo '<div class="alert alert-success" role="alert">
+            Contact has been deleted. <a class="btn btn-dark" href="./contacts.php">View contacts</a>
             </div>';
         }else{
             echo '<div class="alert alert-success" role="alert">

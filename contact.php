@@ -111,8 +111,11 @@ if (!isset($_SESSION['logged_in'])) {
 </html>        
 <?php 
         if (isset($_POST['submit'])) {
-            $d_contact->addContact($_POST['fullname'],$_POST['phone'],$_POST['email'], $_POST['address'],);
-            
-            //echo "<script>window.location.href = './contact.php';</script>";
+            $d_contact->fullname = $_POST['fullname'];
+            $d_contact->phone = $_POST['phone'];
+            $d_contact->email = $_POST['email'];
+            $d_contact->address = $_POST['address'];
+            $d_contact->user_id = $_SESSION['id'];
+            $d_contact->add();
         }
         ?>
