@@ -21,8 +21,8 @@ class User extends Database{
         // sanitize user input
         $this->username = $this->sanitize($this->username);
         $this->password = $this->sanitize($this->password);
-        $this->created_at = date('Y-m-d H:i:s');
-        $this->last_login = date('Y-m-d H:i:s');
+        $this->created_at = date('DATE_RFC822');
+        $this->last_login = date('DATE_RFC822');
         // check if username already exists
         $sql = "SELECT * FROM users WHERE username = '$this->username'";
         $result = $this->connect()->query($sql);
@@ -31,6 +31,8 @@ class User extends Database{
             Username already exists
             </div>';
         }else{
+            //password encryption
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
             // insert user into database
             $sql = "INSERT INTO users VALUES (NULL, '$this->username', '$this->created_at', '$this->last_login', '$this->password')";
             if($this->connect()->query($sql)){
