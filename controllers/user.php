@@ -55,10 +55,11 @@ class User extends Database{
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             if(password_verify($this->password, $row['password'])){
+                session_start();
                 $_SESSION['username'] = $this->username;
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['created_at'] = $row['created_at'];
-                $_SESSION['last_login'] = $row['last_login'];
+                $_SESSION['id'] = $row['userid'];
+                $_SESSION['created_at'] = $row['signup'];
+                $_SESSION['last_login'] = $row['lastonline'];
                 $_SESSION['logged_in'] = true;
                 header('location: contact.php');
                 // updating last login

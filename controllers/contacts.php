@@ -16,26 +16,6 @@ class contact extends Database {
         $data = htmlspecialchars($data);
         return $data;
     }
-    // create contact
-    public function create(){
-        // sanitize user input
-        $this->fullname = $this->sanitize($this->fullname);
-        $this->phone = $this->sanitize($this->phone);
-        $this->email = $this->sanitize($this->email);
-        $this->address = $this->sanitize($this->address);
-        $this->user_id = $this->sanitize($this->user_id);
-        // insert contact into database
-        $sql = "INSERT INTO contacts VALUES (NULL, '$this->fullname', '$this->phone', '$this->email', '$this->address', '$this->user_id')";
-        if($this->connect()->query($sql)){
-            echo '<div class="alert alert-success" role="alert">
-            Contact has been created. <a class="btn btn-dark" href="./contacts.php">View contacts</a>
-            </div>';
-        }else{
-            echo '<div class="alert alert-success" role="alert">
-            Error: '.$this->connect()->error.'
-            </div>';
-        }
-    }
     // show all contacts
     public function show(){
         $sql = "SELECT * FROM contacts WHERE userid = '$this->user_id'";
@@ -71,7 +51,7 @@ class contact extends Database {
         // insert contact into database
         $sql = "INSERT INTO contacts VALUES (NULL, '$this->fullname', '$this->phone', '$this->email', '$this->address', '$this->user_id')";
         if($this->connect()->query($sql)){
-            echo '<div class="alert alert-success" role="alert">User added successfully. </div>';
+            header('location: contact.php?contact=added');
         }else{
             echo '<div class="alert alert-success" role="alert">
             Error: '.$this->connect()->error.'
@@ -92,5 +72,29 @@ class contact extends Database {
             </div>';
         }
     }
-
+    // find contact
+    public function find(){
+        $sql = "SELECT * FROM contacts WHERE contactid = '$this->id'";
+        $result = $this->connect()->query($sql);
+        return $result->fetch_assoc();
+        var_dump($result);
+    }
+    // update contact
+    public function update(){
+        // sanitize user input
+        $this->fullname = $this->sanitize($this->fullname);
+        $this->phone = $this->sanitize($this->phone);
+        $this->email = $this->sanitize($this->email);
+        $this->address = $this->sanitize($this->address);
+        $this->user_id = $this->sanitize($this->user_id);
+        // update contact
+        $sql = "UPDATE contacts SET fullname = '$this->fullname', phone = '$this->phone', email = '$this->email', address = '$this->address' WHERE contactid = '$this->id'";
+        if($this->connect()->query($sql)){
+            header('location: ./contact.php?updated=true');
+        }else{
+            echo '<div class="alert alert-success" role="alert">
+            Error: '.$this->connect()->error.'
+            </div>';
+        }
+    }
 }

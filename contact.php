@@ -63,12 +63,18 @@ if (!isset($_SESSION['logged_in'])) {
                     Contact deleted successfully!
                   </div>';
                 }
-                if(isset($_GET['added'])){
+                if(isset($_GET['contact'])){
                     echo '<div class="alert alert-success" role="alert">
                     Contact added successfully!
                   </div>';
                 }
+                if(isset($_GET['updated'])){
+                    echo '<div class="alert alert-primary" role="alert">
+                    Contact updated successfully!
+                  </div>';
+                }
                     $d_contact = new contact;
+                    $d_contact->user_id = $_SESSION['id'];
                     $datas = $d_contact->show();
                 ?>
                 <?php 
