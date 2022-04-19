@@ -59,26 +59,7 @@ if (!isset($_SESSION['logged_in'])) {
 
                 <?php
                     $d_contact = new contact;
-                    $datas = $d_contact->showallcontact();
-                    if (empty($datas)) {
-                        echo '<div class="alert alert-warning" role="alert">
-                        Sorry no data available feel free to start creating more!
-                            </div>';
-                    }else{
-                        foreach ($datas as $data) {
-                            echo'
-                                <tr>
-                                    <th scope="row">'.$data['contactid'].'</th>
-                                    <td>'.$data['fullname'].'</td>
-                                    <td>'.$data['phone'].'</td>
-                                    <td>'.$data['email'].'</td>
-                                    <td>'.$data['address'].'</td>
-                                    <td>test</td>
-                                </tr>
-                            
-                                ';
-                        }
-                    }
+                    $datas = $d_contact->show();
                 ?>
             </tbody>
             </table>              
