@@ -35,10 +35,6 @@ include('./controllers/user.php');
                     $user->username = $username;
                     $user->password = $password;
                     $user->create();
-                    echo '<div class="alert alert-success" role="alert">
-                            Your account has been created. <a class="btn btn-dark" href="./login.html">Login here</a>
-                            </div>
-                    ';
                 }else{
                     echo '<div class="alert alert-success" role="alert">
                     Password doesnot match

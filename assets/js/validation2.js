@@ -6,10 +6,10 @@ const verifypassword = document.getElementById('verifypassword')
 const passworderrorfield = document.getElementById('passwordError')
 var valid
 // checking data for all inputs if it exist
-var index = 0
 const patterns = /^[a-z0-9_-]{3,15}$/
 const passpattrerns = /^[a-zA-Z0-9]{6,15}$/ 
 form.addEventListener('submit', (e) => {
+    var index = 0
     if (username.value === '' || username.value == null) {
         index++
         username.classList.add("is-invalid");

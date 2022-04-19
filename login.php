@@ -21,6 +21,18 @@
       <div class="">
         <div class="login">
             <h2 class="tlogin">Authenticate</h2>
+            <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="alert alert-danger" role="alert">
+                            User does not exist!
+                        </div>';
+                }
+                if (isset($_GET['password'])) {
+                    echo '<div class="alert alert-danger" role="alert">
+                            Your password is not correct!
+                        </div>';
+                }
+            ?>
             <form id="loginform" action="" method="POST">
                 <?php 
                 // log in
