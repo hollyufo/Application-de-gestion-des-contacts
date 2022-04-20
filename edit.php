@@ -44,7 +44,7 @@ if (!isset($_SESSION['logged_in'])) {
 
       <div class="container">
         <div class="mt-5">
-        <form action="" method="POST">
+        <form id="form-contact" action="" method="POST">
             <?php
                 $contact = new contact();
                 $contact->id = $_GET['id'];
@@ -52,19 +52,23 @@ if (!isset($_SESSION['logged_in'])) {
             ?>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                <input type="text" <?php echo 'value="'.$row['fullname'].'"' ?> name="fullname" class="form-control" id="email" placeholder="Full Name">
+                <input type="text" <?php echo 'value="'.$row['fullname'].'"' ?> name="fullname" class="form-control" id="fullname" placeholder="Full Name">
+                <p class="" style="color: red;" id ="usernameerror"></p>
             </div>
             <div class="mb-3">
                 <label for="Phone" class="form-label">Phone</label>
                 <input type="tel" <?php echo 'value="'.$row['phone'].'"' ?>class="form-control" name="phone" id="phone" placeholder="Phone">
+                <p class="" style="color: red;" id ="phoneerror"></p>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" <?php echo 'value="'.$row['email'].'"' ?> class="form-control" name="email" id="exampleFormControlInput1" placeholder="email@example.com">
+                <input type="email" <?php echo 'value="'.$row['email'].'"' ?> class="form-control" name="email" id="email" placeholder="email@example.com">
+                <p class="" style="color: red;" id ="emailerror"></p>
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Address</label>
-                <input type="text" <?php echo 'value="'.$row['address'].'"' ?> class="form-control" name="address" id="Address" placeholder="Address">
+                <input type="text" <?php echo 'value="'.$row['address'].'"' ?> class="form-control" name="address" id="address" placeholder="Address">
+                <p class="" style="color: red;" id ="addresserror"></p>
             </div>
             <div class="mb-3">
                 <button name='submit' value="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -81,6 +85,7 @@ if (!isset($_SESSION['logged_in'])) {
             $contact->update();
           }
         ?>
+    <script src="./assets/js/editvalidation.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>        

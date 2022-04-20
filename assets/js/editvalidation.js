@@ -14,7 +14,6 @@ form.addEventListener('submit', (e) => {
         index++
         username.classList.add("is-invalid");
         usernameerror.innerHTML = "Please enter full name"
-        console.log(index)
     }
     if (phone.value === '' || phone.value == null) {
         index++

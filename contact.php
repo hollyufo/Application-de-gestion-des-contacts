@@ -103,7 +103,7 @@ if (!isset($_SESSION['logged_in'])) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="form" action="" method="POST">
+                            <form id="form-contact" action="" method="POST">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Full name</label>
                                     <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name">
@@ -121,7 +121,7 @@ if (!isset($_SESSION['logged_in'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="Address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="address" id="Address" placeholder="Address">
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address">
                                     <p class="" style="color: red;" id ="addresserror"></p>
                                 </div>
                                 <div class="mb-3">
