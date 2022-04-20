@@ -12,13 +12,13 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Contact List</a>
-            <a href="./login.html" class="btn btn-dark d-flex">Login</a>
+            <a href="./login.php" class="btn btn-dark d-flex">Login</a>
         </div>
       </nav>
       <div class="pres">
           <h1>Hello!</h1>
-          <p><a href="signup.html">Sign up</a> to start creating your contact list</p>
-          <p>Already have an account ? <a href="login.html">Login here.</a></p>
+          <p><a href="signup.php">Sign up</a> to start creating your contact list</p>
+          <p>Already have an account ? <a href="login.php">Login here.</a></p>
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

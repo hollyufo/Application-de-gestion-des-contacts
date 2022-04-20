@@ -16,7 +16,7 @@ include('./controllers/user.php');
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Contact List</a>
             <div class="d-flex">
-              <a class="btn btn-dark" href="./login.html">Login</a>
+              <a class="btn btn-dark" href="./login.php">Login</a>
             </div>
           
         </div>
@@ -61,7 +61,7 @@ include('./controllers/user.php');
                     <input class="btn btn-sepcial" type="submit" value="submit" name="submit" onclick="checkUsername();">
                 </div>     
             </form>
-            <p class="s13">Already have ancount? <a href="./login.html">Login</a> here.</p>
+            <p class="s13">Already have ancount? <a href="./login.php">Login</a> here.</p>
         </div>
       </div>
       <script src="./assets/js/validation2.js"></script>

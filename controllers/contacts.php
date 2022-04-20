@@ -77,7 +77,6 @@ class contact extends Database {
         $sql = "SELECT * FROM contacts WHERE contactid = '$this->id'";
         $result = $this->connect()->query($sql);
         return $result->fetch_assoc();
-        var_dump($result);
     }
     // update contact
     public function update(){

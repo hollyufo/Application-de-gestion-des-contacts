@@ -24,7 +24,7 @@ if (!isset($_SESSION['logged_in'])) {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="profile.php"><?php echo $_SESSION['username'] ?></a>
+                <a class="nav-link active" aria-current="page" href="./profile.php"><?php echo $_SESSION['username'] ?></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.php">Contacts</a>
@@ -103,22 +103,26 @@ if (!isset($_SESSION['logged_in'])) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST">
+                            <form id="form" action="" method="POST">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                                    <input type="text" name="fullname" class="form-control" id="email" placeholder="Full Name">
+                                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name">
+                                    <p class="" style="color: red;" id ="usernameerror"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Phone" class="form-label">Phone</label>
                                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone">
+                                    <p class="" style="color: red;" id ="phoneerror"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="email@example.com">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com">
+                                    <p class="" style="color: red;" id ="emailerror"></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Address" class="form-label">Address</label>
                                     <input type="text" class="form-control" name="address" id="Address" placeholder="Address">
+                                    <p class="" style="color: red;" id ="addresserror"></p>
                                 </div>
                                 <div class="mb-3">
                                     <button name='submit' value="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -131,7 +135,7 @@ if (!isset($_SESSION['logged_in'])) {
                     </div>
             </div>
         </div>
-
+    <script src="./assets/js/contactvalidation.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>        

@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Contact List</a>
-            <a href="./login.html" class="btn btn-dark d-flex">Login</a>
+            <a href="./login.php" class="btn btn-dark d-flex">Login</a>
         </div>
       </nav>
       <div class="">
@@ -59,7 +59,7 @@
                     <input class="btn btn-sepcial" type="submit" value="Login" name="login">
                 </div>     
             </form>
-            <p class="s13">No account? <a href="./signup.html">Sign up</a> here.</p>
+            <p class="s13">No account? <a href="./signup.php">Sign up</a> here.</p>
         </div>
       </div>
     <script src="./assets/js/validation.js"></script>
