@@ -1,30 +1,18 @@
 <?php
 
-
-class Test{
-
-
-    public static $instance;
-
-    public function hi($name){
-        $this->message = "Hello $name";
-        return $this;
+function toCamelCase($str){
+    $arr = explode("_", $str);
+    $n = count($arr);
+    for($i = 1; $i < $n; $i++){
+        $arr2 = str_split($arr[$i]);
+        $arr2[0] = strtoupper($arr2[0]);
+        $arr[$i] = implode($arr2);
+        $str = implode($arr);
+    }
+    return $str;
     }
 
-    public function bye($name){
-        $this->message = $this->message."By $name";
-        return $this;
-    }
+    $str = "the_hhh_stealth_warrior_hello";
 
-    public function getMessage(){
-        return $this->message;
-    }
-
-    public static function getInstance(){
-        if(!isset(self::$instance)){
-            self::$instance = new Test();
-        }
-        return self::$instance;
-    }
-}
-echo Test::getInstance()->hi('John')->bye('Doe')->getMessage();
+    $test = toCamelCase($str);
+    echo $test;
